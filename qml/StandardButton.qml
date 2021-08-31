@@ -30,12 +30,15 @@ Item {
 
     Rectangle {
         id: _background
-        anchors.fill: parent
+        anchors.centerIn: parent
+        radius: FishUI.Theme.smallRadius
+        width: control.width - radius
+        height: control.height - radius
         color: !flat ? _mouseArea.pressed ? pressedColor : _mouseArea.containsMouse
                                             ? hoveredColor : backgroundColor
                      : _mouseArea.pressed ? flatPressedBg : _mouseArea.containsMouse
                                                            ? flatHoveredBg : flatBg
-        opacity: !flat ? _mouseArea.pressed || _mouseArea.containsMouse ? 0.7 : 0.5 : 1.0
+        opacity: !flat ? _mouseArea.pressed || _mouseArea.containsMouse ? 0.6 : 0.7 : 1.0
     }
 
     MouseArea {
@@ -49,12 +52,13 @@ Item {
         id: _icon
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.verticalCenter: parent.verticalCenter
-        width: control.height * 0.4
+        width: control.height * 0.45
         height: width
         sourceSize: Qt.size(width, height)
         source: control.icon ? control.icon : ""
         visible: _icon.status === Image.Ready
         smooth: false
+        antialiasing: true
     }
 
     Label {
